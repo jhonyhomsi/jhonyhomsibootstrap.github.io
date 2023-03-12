@@ -3,64 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Country Flags</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12">
                 <h1>Country Flags</h1>
-                <form>
-                    <div class="form-group">
-                        <label for="searchInput">Search Country:</label>
-                        <input type="text" class="form-control" id="searchInput" placeholder="Enter country name">
-                    </div>
-                    <button type="button" class="btn btn-primary" id="searchBtn">Search</button>
-                </form>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search-input" placeholder="Enter country name">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary btn-block" id="search-btn">Search</button>
             </div>
         </div>
         <div class="row mt-4" id="country-cards">
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // function to create card for country
-            function createCountryCard(country) {
-                var countryCard = '<div class="col-md-3">';
-                countryCard += '<div class="card mb-4 box-shadow">';
-                countryCard += '<img class="card-img-top" src="' + country.flags.png + '">';
-                countryCard += '<div class="card-body">';
-                countryCard += '<h5 class="card-title">' + country.name.common + '</h5>';
-                countryCard += '<p class="card-text">Capital: ' + country.capital + '</p>';
-                countryCard += '<p class="card-text">Region: ' + country.region + '</p>';
-                countryCard += '<p class="card-text">Population: ' + country.population + '</p>';
-                countryCard += '</div></div></div>';
-                return countryCard;
-            }
-
-            // function to display search results
-            function displaySearchResults(country) {
-                var countryCards = '';
-                countryCards += createCountryCard(country);
-                $('#country-cards').html(countryCards);
-            }
-
-            // event listener for search button click
-            $('#searchBtn').click(function() {
-                var searchValue = $('#searchInput').val().toLowerCase();
-                axios.get('https://restcountries.com/v3.1/name/' + searchValue + '?fullText=true')
-                    .then(function (response) {
-                        var countries = response.data;
-                        displaySearchResults(countries[0]);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            });
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
